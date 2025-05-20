@@ -6,6 +6,24 @@
     margin: 0;
 }
 body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
     margin: 0rem 2rem;
+    /* background-image: url(tryme.jpg);
+    background-size: 100vw 100vh; */
+}
 
+div img{
+    height: 6rem;
+    width: 6rem;
+}
+
+.listaDeCampeones{
+    width: 80vw;
+    display: grid;
+    border: 1px solid red;
+    grid-template-columns: repeat(auto-fit, minmax(6rem,1fr));
+    gap: 0.5rem;
 }
