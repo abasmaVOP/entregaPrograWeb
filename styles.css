@@ -11,8 +11,10 @@ body{
     justify-content: center;
     flex-direction: column;
     margin: 0rem 2rem;
-    /* background-image: url(tryme.jpg);
-    background-size: 100vw 100vh; */
+    background-color: #001845;
+    color: #5C677D;
+    /* background-image: url(sea.jpeg);
+    background-position: fixed; */
 }
 
 div img{
@@ -20,10 +22,159 @@ div img{
     width: 6rem;
 }
 
+.listaDeCampeones div{
+    width: max-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
 .listaDeCampeones{
     width: 80vw;
+    background-color: #001233;
     display: grid;
-    border: 1px solid red;
+    border: 1px solid rgb(0, 0, 0);
     grid-template-columns: repeat(auto-fit, minmax(6rem,1fr));
-    gap: 0.5rem;
+    gap: 0rem;
+    padding: 20px;
+}
+
+.imgChamp{
+    width: 6rem;
+    height: 6rem;
+    background-color: red;
+}
+
+/* Ver*/
+
+.container {
+    display: grid;
+    height: 20rem;
+    width: 40rem;
+    grid-template-columns: repeat(auto-fit, 4);
+    grid-template-rows: 1.3fr 0.7fr;
+    gap: 0px 0px;
+    grid-template-areas:
+        "primariaSelec rutaPrimaria rutaSecundariaSelec rutaSecundaria"
+        "primariaSelec rutaPrimaria statSelec stats";
+}
+
+.primariaSelec { 
+    grid-area: primariaSelec;
+    background-color: #5e77a7; /* Azul oscuro para selección primaria */
+}
+
+.rutaPrimaria { 
+    grid-area: rutaPrimaria;
+    background-color: #a7c0ff; /* Azul claro para runas primarias */
+}
+
+.rutaSecundariaSelec { 
+    grid-area: rutaSecundariaSelec;
+    background-color: #ff6f61; /* Coral para selección secundaria */
+}
+
+.rutaSecundaria { 
+    grid-area: rutaSecundaria;
+    background-color: #ff9999; /* Rosa claro para runas secundarias */
+}
+
+.statSelec { 
+    grid-area: statSelec;
+    background-color: #4caf50; /* Verde oscuro para selección de stats */
+}
+
+.stats { 
+    grid-area: stats;
+    background-color: #80ff80; /* Verde claro para los stats */
+}
+
+/* Media query para pantallas pequeñas (menores a 768px) */
+@media (max-width: 768px) {
+    .container {
+        /* Mantiene 2 columnas, la primera 4 veces más pequeña que la segunda */
+        grid-template-columns: 1fr 4fr;
+        /* Define 3 filas */
+        grid-template-rows: repeat(3, auto);
+        /* Reorganiza las áreas para que se distribuyan en 2 columnas y 3 filas */
+        grid-template-areas:
+            "primariaSelec rutaPrimaria"
+            "rutaSecundariaSelec rutaSecundaria"
+            "statSelec stats"; /* Cambié el orden: statSelec a la izquierda, stats a la derecha */
+        /* Ajusta la altura para que sea flexible */
+        height: auto;
+        min-height: 20rem;
+        /* Ajusta el ancho para que ocupe toda la pantalla */
+        width: 100%;
+    }
+
+    /* Opcional: Ajusta las áreas para que se vean mejor */
+    .primariaSelec,
+    .rutaPrimaria,
+    .rutaSecundariaSelec,
+    .rutaSecundaria,
+    .statSelec,
+    .stats {
+        height: auto; /* Permite que cada área se ajuste al contenido */
+        min-height: 4rem; /* Altura mínima para que no se vean demasiado pequeñas */
+    }
+}
+
+
+
+/* PAGINA DE RUNAS */
+
+.selectorRunas {
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    justify-content: center;
+    height: 25rem;
+    width: 80rem;
+    background-color: black;
+    gap: 3rem;
+}
+
+.rutaPrim img, .rutaSec img, .rutaPrimSelec img, .rutaSecSelec img{
+    height: 3rem;
+    width: 3rem;
+}
+
+.primClave img, .primClaveSelec img{
+    height: 3.5rem;
+    width: 3.5rem;
+}
+
+.primSlots img, .secSlots img, .primSlotsSelec img, .secSlotsSelec img {
+    height: 3rem;
+    width: 3rem;
+}
+
+.rutaSecSelec, .primSlotsSelec, .primClaveSelec, .rutaPrimSelec, .secSlotsSelec, .statSelec, .statsCol {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.rutaPrim, .primClave, .primSlots, .slotRow, .rutaSec, .secSlots, .statsRow {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.primSlots, .secSlots {
+    flex-direction: column;
+}
+
+.statSelec img, .statsRow img{
+    height: 2rem;
+    width: 2rem;
+}
+
+.primariaSelec, .rutaPrimaria, .rutaSecundariaSelec, .rutaSecundaria, .statSelec, .stats{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
 }
