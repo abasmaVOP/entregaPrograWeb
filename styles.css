@@ -91,34 +91,27 @@ div img{
     background-color: #80ff80; /* Verde claro para los stats */
 }
 
-/* Media query para pantallas pequeñas (menores a 768px) */
+
 @media (max-width: 768px) {
     .container {
-        /* Mantiene 2 columnas, la primera 4 veces más pequeña que la segunda */
         grid-template-columns: 1fr 4fr;
-        /* Define 3 filas */
         grid-template-rows: repeat(3, auto);
-        /* Reorganiza las áreas para que se distribuyan en 2 columnas y 3 filas */
         grid-template-areas:
             "primariaSelec rutaPrimaria"
             "rutaSecundariaSelec rutaSecundaria"
-            "statSelec stats"; /* Cambié el orden: statSelec a la izquierda, stats a la derecha */
-        /* Ajusta la altura para que sea flexible */
+            "statSelec stats";
         height: auto;
         min-height: 20rem;
-        /* Ajusta el ancho para que ocupe toda la pantalla */
         width: 100%;
     }
-
-    /* Opcional: Ajusta las áreas para que se vean mejor */
     .primariaSelec,
     .rutaPrimaria,
     .rutaSecundariaSelec,
     .rutaSecundaria,
     .statSelec,
     .stats {
-        height: auto; /* Permite que cada área se ajuste al contenido */
-        min-height: 4rem; /* Altura mínima para que no se vean demasiado pequeñas */
+        height: auto; 
+        min-height: 4rem; 
     }
 }
 
@@ -177,4 +170,19 @@ div img{
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
+}
+
+.imgChamp img {
+    height: 6rem;
+    width: 6rem;
+    object-fit: cover;
+}
+
+.saved-rune-runes img[src=""] {
+    border: 1px solid #ccc;
+}
+
+.saved-rune-runes img {
+    height: 3rem;
+    width: 3rem;
 }
