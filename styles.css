@@ -63,32 +63,32 @@ div img{
 
 .primariaSelec { 
     grid-area: primariaSelec;
-    background-color: #5e77a7; /* Azul oscuro para selección primaria */
+    background-color: #5e77a7;
 }
 
 .rutaPrimaria { 
     grid-area: rutaPrimaria;
-    background-color: #a7c0ff; /* Azul claro para runas primarias */
+    background-color: #a7c0ff;
 }
 
 .rutaSecundariaSelec { 
     grid-area: rutaSecundariaSelec;
-    background-color: #ff6f61; /* Coral para selección secundaria */
+    background-color: #5e77a7;
 }
 
 .rutaSecundaria { 
     grid-area: rutaSecundaria;
-    background-color: #ff9999; /* Rosa claro para runas secundarias */
+    background-color: #a7c0ff;
 }
 
 .statSelec { 
     grid-area: statSelec;
-    background-color: #4caf50; /* Verde oscuro para selección de stats */
+    background-color: #5e77a7;
 }
 
 .stats { 
     grid-area: stats;
-    background-color: #80ff80; /* Verde claro para los stats */
+    background-color: #a7c0ff;
 }
 
 
@@ -178,11 +178,53 @@ div img{
     object-fit: cover;
 }
 
-.saved-rune-runes img[src=""] {
-    border: 1px solid #ccc;
-}
-
 .saved-rune-runes img {
     height: 3rem;
     width: 3rem;
+}
+
+.saved-rune-runes button, .saved-rune button {
+    background-color: #5C677D;
+    border: 3px solid black;
+    color: black;
+}
+
+.btn-primary{
+    margin-top: 5px;
+    background-color: #5C677D;
+    border: 3px solid black;
+    color: black;
+}
+
+.saved-rune {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+.rune-name-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.rune-name {
+    margin: 0;
+    font-size: 16px;
+}
+
+.edit-name-btn, .save-name-btn, .cancel-name-btn {
+    margin-left: 10px;
+    padding: 5px 10px;
+    cursor: pointer;
+    background-color: #5C677D;
+    border: 3px solid black;
+    color: black;
+}
+
+.edit-name-input {
+    margin-right: 10px;
+    padding: 5px;
 }

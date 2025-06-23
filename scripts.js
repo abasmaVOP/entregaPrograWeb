@@ -335,7 +335,7 @@ function actualizarOpcionesRutaSecundaria() {
         document.querySelector('.rutaSecSelec').innerHTML = `<img src="${pathImages[rutaSecundariaSelec]}" alt="${rutaSecundariaSelec}">`;
         document.querySelector('.secSlotsSelec').innerHTML = '<img src="" alt=""><img src="" alt="">';
         runasSecundariasSelec = [];
-        selectionOrder = 0; // Resetear el orden de selección
+        selectionOrder = 0;
         cargarRunasSecundarias(rutaSecundariaSelec);
     }
 }
@@ -377,7 +377,7 @@ if (champion) {
 }
 
 
-// Función para verificar si todas las runas están seleccionadas
+// verificar si todas las runas están seleccionadas
 function checkAllRunesSelected() {
     const keystoneSelected = document.querySelector('.primClaveSelec img[src]');
     const primaryMinorsSelected = document.querySelectorAll('.primSlotsSelec img[src]').length === 3;
@@ -387,14 +387,12 @@ function checkAllRunesSelected() {
 
     return keystoneSelected && primaryMinorsSelected && secondaryPathSelected && secondaryMinorsSelected && statsSelected;
 }
-
-// Actualizar el estado del botón Guardar
 function updateSaveButton() {
     const saveButton = document.getElementById('saveRunes');
     saveButton.disabled = !checkAllRunesSelected();
 }
 
-// Función para renderizar las runas guardadas en el DOM
+// runas guardadas en el DOM
 function renderSavedRunes() {
     const savedRunesList = document.getElementById('savedRunesList');
     savedRunesList.innerHTML = '';
@@ -403,7 +401,10 @@ function renderSavedRunes() {
         const runeDiv = document.createElement('div');
         runeDiv.className = 'saved-rune';
         runeDiv.innerHTML = `
-            <input type="text" value="${config.name}" data-index="${index}">
+            <div class="rune-name-container">
+                <p class="rune-name" data-index="${index}">${config.name}</p>
+                <button class="edit-name-btn" data-index="${index}">Editar</button>
+            </div>
             <div class="saved-rune-runes">
                 <img src="${document.querySelector('.rutaPrimSelec img').src}" alt="${config.primaryPath}">
                 <img src="${document.querySelector('.primClaveSelec img').src}" alt="${config.keystone}">
@@ -416,16 +417,35 @@ function renderSavedRunes() {
         `;
         savedRunesList.appendChild(runeDiv);
 
-        // Evento para renombrar
-        const input = runeDiv.querySelector('input');
-        input.addEventListener('change', () => {
-            savedRunes[index].name = input.value;
-            renderSavedRunes(); // Re-renderizar para actualizar
+        // botón de edición
+        const editButton = runeDiv.querySelector('.edit-name-btn');
+        editButton.addEventListener('click', () => {
+            const nameContainer = runeDiv.querySelector('.rune-name-container');
+            const currentName = runeDiv.querySelector('.rune-name').textContent;
+            nameContainer.innerHTML = `
+                <input type="text" value="${currentName}" class="edit-name-input" data-index="${index}">
+                <button class="save-name-btn" data-index="${index}">Guardar</button>
+                <button class="cancel-name-btn" data-index="${index}">Cancelar</button>
+            `;
+
+            // nuevo nombre
+            const saveButton = nameContainer.querySelector('.save-name-btn');
+            saveButton.addEventListener('click', () => {
+                const newName = nameContainer.querySelector('.edit-name-input').value;
+                savedRunes[index].name = newName;
+                renderSavedRunes();
+            });
+
+            // Cancelar
+            const cancelButton = nameContainer.querySelector('.cancel-name-btn');
+            cancelButton.addEventListener('click', () => {
+                renderSavedRunes();
+            });
         });
     });
 }
 
-// Función para guardar las runas
+// guardar las runas
 function saveRunes() {
     const champion = urlParams.get('champion') || 'Sin Campeón';
     const keystone = document.querySelector('.primClaveSelec img').src;
@@ -435,7 +455,7 @@ function saveRunes() {
     const stats = Array.from(document.querySelectorAll('.statsCol img')).map(img => img.src);
 
     const runeConfig = {
-        name: `Build para ${champion} #${savedRunes.length + 1}`,
+        name: `Runas para ${champion} #${savedRunes.length + 1}`,
         champion,
         keystone,
         primaryMinors,
